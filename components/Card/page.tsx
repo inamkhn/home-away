@@ -19,13 +19,13 @@ export default function CardPage({id,image, title, description, price_per_night,
   const [color,setColor] = useState(false)
   return (
     <Card className='max-w-sm overflow-hidden'>
-      <Link href={`/properties/${id}`}>
       <CardHeader className='p-0 relative'>
         <img src={image} alt={title} className='w-full h-48 object-cover' />
         <div className='absolute bg-slate-50 p-1 right-3 rounded-xl'>
         <Heart color={!color? '#000000' : '#dc1818'} onClick={() => setColor(!color)} />
         </div>
       </CardHeader>
+      <Link href={`/properties/${id}`}>
       <CardContent className='p-4'>
         <h2 className='text-xl font-semibold mb-2'>{title}</h2>
         <p className='text-sm text-gray-600 mb-4'>{description.substring(0,75)}</p>

@@ -76,7 +76,7 @@ const Navbar = () => {
                   <Link href='/profile'>Profile</Link>
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
-                  Logout
+                   <p className='text-red-500'>Logout</p>
                 </DropdownMenuCheckboxItem>
               </DropdownMenuContent>
             </DropdownMenu>
