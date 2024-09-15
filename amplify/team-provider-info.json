@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-homeaway-dev-96265-authRole",
+      "UnauthRoleArn": "arn:aws:iam::709398433327:role/amplify-homeaway-dev-96265-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::709398433327:role/amplify-homeaway-dev-96265-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-homeaway-dev-96265-deployment",
+      "UnauthRoleName": "amplify-homeaway-dev-96265-unauthRole",
+      "StackName": "amplify-homeaway-dev-96265",
+      "StackId": "arn:aws:cloudformation:us-east-1:709398433327:stack/amplify-homeaway-dev-96265/1a014cc0-71ca-11ef-8973-0e903a4ee48d",
+      "AmplifyAppId": "dzxed4xgohv8z"
+    }
+  }
+}

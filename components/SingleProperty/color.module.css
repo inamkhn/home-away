@@ -1,0 +1,15 @@
+.rdp-day--selected {
+  background-color: #4caf50; /* Green color for selected dates */
+  color: white; /* Text color */
+  border-radius: 50%; /* Circular shape */
+}
+
+/* Change hover effect for selected days */
+.rdp-day--selected:hover {
+  background-color: #388e3c; /* Darker green on hover */
+}
+
+/* Optional: Style for the range start and end */
+.rdp-day--range-start, .rdp-day--range-end {
+  background-color: #ff9800; /* Orange for range start and end */
+}
