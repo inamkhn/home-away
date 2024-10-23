@@ -11,8 +11,8 @@ import { AlignJustify, CircleUserRound } from 'lucide-react'
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui/button'
-import {DropdownMenuItem } from '@/components/ui/dropdown-menu'
-import { Input } from "@/components/ui/input"
+import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
+import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 type Checked = DropdownMenuCheckboxItemProps['checked']
 
@@ -23,10 +23,14 @@ const Navbar = () => {
   const { setTheme } = useTheme()
   return (
     <div>
-      <div className='flex justify-between items-center py-5'>
+      <div className='flex justify-between items-center py-5 '>
         <h1 className='text-2xl font-bold'>HomeAway</h1>
         <div>
-        <Input type="email" placeholder="find a property" className='sm:w-[200px] md:w-[300px] lg:w-[400px] rounded-full' />
+          <Input
+            type='email'
+            placeholder='find a property'
+            className='sm:w-[200px] md:w-[300px] lg:w-[400px] rounded-full'
+          />
         </div>
         <div className='flex items-center space-x-4'>
           <div>
@@ -58,25 +62,25 @@ const Navbar = () => {
                   <Link href='/favorites'>Favorites</Link>
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
-                  Bookings
+                  <Link href='/bookings'>Bookings</Link>
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
                   <Link href='/reviews'>Reviews</Link>
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
-                 <Link href='/reservations'>Reservations</Link> 
+                  <Link href='/reservations'>Reservations</Link>
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
-                  Create rental
+                  <Link href='/properties/add'>Create rental</Link>
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
-                  <Link href='/myRental'>My rental</Link> 
+                  <Link href='/myRental'>My rental</Link>
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
                   <Link href='/profile'>Profile</Link>
                 </DropdownMenuCheckboxItem>
                 <DropdownMenuCheckboxItem checked={showPanel} onCheckedChange={setShowPanel}>
-                   <p className='text-red-500'>Logout</p>
+                  <p className='text-red-500'>Logout</p>
                 </DropdownMenuCheckboxItem>
               </DropdownMenuContent>
             </DropdownMenu>

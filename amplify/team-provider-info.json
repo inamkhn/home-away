@@ -14,6 +14,15 @@
     "categories": {
       "auth": {
         "homeaway72273a02": {}
+      },
+      "api": {
+        "homeaway": {}
+      },
+      "function": {
+        "registerFunction": {
+          "deploymentBucketName": "amplify-homeaway-dev-f97ee-deployment",
+          "s3Key": "amplify-builds/registerFunction-334963334e305a494f45-build.zip"
+        }
       }
     }
   }

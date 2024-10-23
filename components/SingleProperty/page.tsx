@@ -8,12 +8,17 @@ import { DayPicker, DateRange } from 'react-day-picker'
 import './color.module.css'
 import Location from './Location/page'
 import { Button } from '../ui/button'
+import Comment from '../Comment/page'
 
 const SinglePropertiesPage = () => {
   const [color, setColor] = useState(false)
   const [range, setRange] = useState<DateRange | undefined>(undefined)
+  const [show, setShow] = useState(false)
   // const shareUrl = 'https://example.com'
   console.log('range', range)
+
+  const booked = true
+
   return (
     <div>
       <div className='mt-5'>
@@ -75,9 +80,17 @@ const SinglePropertiesPage = () => {
             {/* location */}
             <Location />
             {/* add booking button */}
-            <div className='my-2 space-y-2'>
-              <Button className='lg:w-[800px] md:w-[600px] sm:w-[400px] bg-orange-400 rounded-lg'>Book Now</Button>
-            </div>
+
+            {booked ? (
+              <div className='my-2 space-y-2' onClick={() => setShow(!show)}>
+                <Button className=' bg-orange-400 rounded-lg'>{show ? "Close": "Add Review"}</Button>
+              </div>
+            ) : (
+              <div className='my-2 space-y-2'>
+                <Button className=' bg-orange-400 rounded-lg'>Book Now</Button>
+              </div>
+            )}
+            {show && <Comment />}
           </div>
           <div className='lg:col-span-1'>
             <DayPicker mode='range' selected={range} onSelect={setRange} className='w-full' />

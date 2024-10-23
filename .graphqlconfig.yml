@@ -1,0 +1,21 @@
+projects:
+  homeaway:
+    schemaPath: amplify/backend/api/homeaway/build/schema.graphql
+    includes:
+      - app/graphql/**/*.ts
+    excludes:
+      - ./amplify/**
+      - src/API.ts
+      - /app
+      - /app/API.ts
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: /app/API.ts
+        docsFilePath: app/graphql
+        region: us-east-1
+        apiId: null
+        maxDepth: 4
+extensions:
+  amplify:
+    version: 3

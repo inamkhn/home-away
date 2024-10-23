@@ -1,0 +1,104 @@
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type User @model {
+  id: ID!
+  username: String!
+  first_name: String
+  last_name: String
+  email: String!
+  image: String
+  properties: [Property] @hasMany
+  favorites: [Favorites] @hasMany
+  reviews: [Review] @hasMany
+  bookings: [Booking] @hasMany
+  chatRoomsAsUser: [ChatRoom] @hasMany(indexName: "byUser", fields: ["id"])
+  chatRoomsAsOwner: [ChatRoom] @hasMany(indexName: "byPropertyOwner", fields: ["id"])
+  messages: [Message] @hasMany(indexName: "bySender", fields: ["id"])
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Property @model {
+  id: ID!
+  name: String! @index(name: "byName", queryField: "propertiesByName")
+  category: String!
+  description: String!
+  price: Float!
+  image: String!
+  address: String!
+  country: String!
+  guests: Int
+  bedrooms: Int
+  beds:    Int
+  baths: Int
+  amenities: [String]
+  user: User! @belongsTo(fields: ["userId"])
+  userId: ID!
+  favorites: [Favorites] @hasMany
+  reviews: [Review] @hasMany
+  bookings: [Booking] @hasMany
+  chatRooms: [ChatRoom] @hasMany(indexName: "byProperty", fields: ["id"])
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Favorites @model {
+  id: ID!
+  user: User! @belongsTo(fields: ["userId"])
+  userId: ID!
+  property: Property! @belongsTo(fields: ["propertyId"])
+  propertyId: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Review @model {
+  id: ID!
+  user: User! @belongsTo(fields: ["userId"])
+  userId: ID!
+  property: Property! @belongsTo(fields: ["propertyId"])
+  propertyId: ID!
+  rating: Int!
+  comment: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Booking @model {
+  id: ID!
+  user: User! @belongsTo(fields: ["userId"])
+  userId: ID!
+  property: Property! @belongsTo(fields: ["propertyId"])
+  propertyId: ID!
+  startDate: AWSDateTime!
+  endDate: AWSDateTime!
+  total_nights: Int!
+  total_price: Float!
+  status: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type ChatRoom @model {
+  id: ID!
+  user: User! @belongsTo(fields: ["userId"])
+  userId: ID! @index(name: "byUser")
+  propertyOwner: User! @belongsTo(fields: ["propertyOwnerId"])
+  propertyOwnerId: ID! @index(name: "byPropertyOwner")
+  property: Property @belongsTo(fields: ["propertyId"])
+  propertyId: ID @index(name: "byProperty")
+  messages: [Message] @hasMany(indexName: "byChatRoom", fields: ["id"])
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Message @model {
+  id: ID!
+  content: String!
+  sender: User! @belongsTo(fields: ["senderId"])
+  senderId: ID! @index(name: "bySender")
+  chatRoom: ChatRoom! @belongsTo(fields: ["chatRoomId"])
+  chatRoomId: ID! @index(name: "byChatRoom")
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}

@@ -1,13 +1,12 @@
-import CategorySection from "@/components/MegaMenu/page";
 import Properties from "./properties/page";
 
 
-export default function Home() {
+export function Home() {
   return (
-    <div>
-      {/* <Navbar/> */}
-      <CategorySection/>
+    <>
       <Properties/>
-    </div>
+    </>
   );
 }
+
+export default Home;
