@@ -18,7 +18,7 @@
     }
   },
   "auth": {
-    "homeaway72273a02": {
+    "homeawaye6cb7ed8": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -46,36 +46,26 @@
     }
   },
   "function": {
-    "registerFunction": {
+    "createprofilefunction": {
       "build": true,
-      "dependsOn": [
-        {
-          "attributes": [
-            "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput"
-          ],
-          "category": "api",
-          "resourceName": "homeaway"
-        }
-      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
   },
   "parameters": {
-    "AMPLIFY_function_registerFunction_deploymentBucketName": {
+    "AMPLIFY_function_createprofilefunction_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "registerFunction"
+          "resourceName": "createprofilefunction"
         }
       ]
     },
-    "AMPLIFY_function_registerFunction_s3Key": {
+    "AMPLIFY_function_createprofilefunction_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "registerFunction"
+          "resourceName": "createprofilefunction"
         }
       ]
     }

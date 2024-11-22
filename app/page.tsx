@@ -1,10 +1,11 @@
+import CategorySection from "@/components/MegaMenu/page";
 import Properties from "./properties/page";
-
 
 export function Home() {
   return (
     <>
-      <Properties/>
+      <CategorySection />
+      <Properties />
     </>
   );
 }

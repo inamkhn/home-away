@@ -1,5 +1,4 @@
 'use client'
-
 import { useState, FormEvent } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -50,11 +49,11 @@ export default function RegisterPage() {
       const res = await signUp({
         username: email,
         password: password,
-        options: {
-          userAttributes: {
-            preferred_username: username,
-          },
-        },
+        // options: {
+        //   userAttributes: {
+        //     preferred_username: username,
+        //   },
+        // },
       })
       console.log("response: ",res)
       toast("register success")

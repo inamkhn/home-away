@@ -46,7 +46,7 @@ export default function OtpPage() {
       if (response) {
         router.push('/signin')
       }
-      toast('register success')
+      toast('verification success')
     } catch (error) {
       if (error instanceof Error) {
         console.log("error:",error)
