@@ -105,7 +105,7 @@ export type Property = {
   amenities: string,
   createdAt: string,
   updatedAt: string,
-  profile: Profile,
+  profile?: Profile | null,
   favorites?: ModelFavoriteConnection | null,
   reviews?: ModelReviewConnection | null,
   bookings?: ModelBookingConnection | null,
@@ -722,7 +722,7 @@ export type CreatePropertyMutation = {
     amenities: string,
     createdAt: string,
     updatedAt: string,
-    profile:  {
+    profile?:  {
       __typename: "Profile",
       id: string,
       firstName: string,
@@ -732,7 +732,7 @@ export type CreatePropertyMutation = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
-    },
+    } | null,
     favorites?:  {
       __typename: "ModelFavoriteConnection",
       nextToken?: string | null,
@@ -772,7 +772,7 @@ export type UpdatePropertyMutation = {
     amenities: string,
     createdAt: string,
     updatedAt: string,
-    profile:  {
+    profile?:  {
       __typename: "Profile",
       id: string,
       firstName: string,
@@ -782,7 +782,7 @@ export type UpdatePropertyMutation = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
-    },
+    } | null,
     favorites?:  {
       __typename: "ModelFavoriteConnection",
       nextToken?: string | null,
@@ -822,7 +822,7 @@ export type DeletePropertyMutation = {
     amenities: string,
     createdAt: string,
     updatedAt: string,
-    profile:  {
+    profile?:  {
       __typename: "Profile",
       id: string,
       firstName: string,
@@ -832,7 +832,7 @@ export type DeletePropertyMutation = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
-    },
+    } | null,
     favorites?:  {
       __typename: "ModelFavoriteConnection",
       nextToken?: string | null,
@@ -1364,7 +1364,7 @@ export type GetPropertyQuery = {
     amenities: string,
     createdAt: string,
     updatedAt: string,
-    profile:  {
+    profile?:  {
       __typename: "Profile",
       id: string,
       firstName: string,
@@ -1374,7 +1374,7 @@ export type GetPropertyQuery = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
-    },
+    } | null,
     favorites?:  {
       __typename: "ModelFavoriteConnection",
       nextToken?: string | null,
@@ -1759,7 +1759,7 @@ export type OnCreatePropertySubscription = {
     amenities: string,
     createdAt: string,
     updatedAt: string,
-    profile:  {
+    profile?:  {
       __typename: "Profile",
       id: string,
       firstName: string,
@@ -1769,7 +1769,7 @@ export type OnCreatePropertySubscription = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
-    },
+    } | null,
     favorites?:  {
       __typename: "ModelFavoriteConnection",
       nextToken?: string | null,
@@ -1808,7 +1808,7 @@ export type OnUpdatePropertySubscription = {
     amenities: string,
     createdAt: string,
     updatedAt: string,
-    profile:  {
+    profile?:  {
       __typename: "Profile",
       id: string,
       firstName: string,
@@ -1818,7 +1818,7 @@ export type OnUpdatePropertySubscription = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
-    },
+    } | null,
     favorites?:  {
       __typename: "ModelFavoriteConnection",
       nextToken?: string | null,
@@ -1857,7 +1857,7 @@ export type OnDeletePropertySubscription = {
     amenities: string,
     createdAt: string,
     updatedAt: string,
-    profile:  {
+    profile?:  {
       __typename: "Profile",
       id: string,
       firstName: string,
@@ -1867,7 +1867,7 @@ export type OnDeletePropertySubscription = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
-    },
+    } | null,
     favorites?:  {
       __typename: "ModelFavoriteConnection",
       nextToken?: string | null,

@@ -29,7 +29,7 @@ type Property @model @auth(rules: [{ allow: public }]) {
   amenities: String!
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
-  profile: Profile! @belongsTo
+  profile: Profile @belongsTo
   favorites: [Favorite] @hasMany
   reviews: [Review] @hasMany
   bookings: [Booking] @hasMany

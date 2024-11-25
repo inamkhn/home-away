@@ -240,7 +240,6 @@ export default function PropertyForm() {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      // First, get the current user's profile
       const formData = {
         name: values.name,
         tagline: values.tagline,
@@ -248,20 +247,15 @@ export default function PropertyForm() {
         description: values.description,
         country: values.country.label,
         price: parseInt(values.price),
-        bedrooms: parseInt(values.bedrooms),
         guests: parseInt(values.guests),
+        bedrooms: parseInt(values.bedrooms),
         beds: parseInt(values.beds),
         baths: parseInt(values.baths),
         image: values.image.name,
         amenities: JSON.stringify(selectedAmenities),
         profilePropertiesId: userId,
-        profile: {
-          connect: {
-            id: userId
-          }
-        }
       };
-
+  
       const newProperty = await client.graphql({
         query: createProperty,
         variables: { 
@@ -272,11 +266,7 @@ export default function PropertyForm() {
       toast("Property created successfully");
     } catch (error) {
       console.error("Error details:", error);
-      if (error instanceof Error) {
-        console.log("Error message:", error.message);
-        toast(error.message);
-      }
-      toast("An error occurred while creating the property");
+      toast(error.message || "An error occurred while creating the property");
     }
     setSubmitting(false);
   };
