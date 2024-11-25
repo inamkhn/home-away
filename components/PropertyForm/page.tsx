@@ -85,6 +85,7 @@ export default function PropertyForm() {
   });
   const [userId, setUserId] = useState("");
   const client = generateClient();
+  console.log("selectedCountry:",selectedCountry.label)
 
   useEffect(() => {
     async function getCurrentFunction() {
@@ -238,21 +239,43 @@ export default function PropertyForm() {
   };
 
   const handleSubmit = async (values, { setSubmitting }) => {
-    const formData = {
-      ...values,
-      amenities: selectedAmenities,
-      profile: userId,
-    };
-    console.log("formData:", formData);
     try {
-      const newTodo = await client.graphql({
+      // First, get the current user's profile
+      const formData = {
+        name: values.name,
+        tagline: values.tagline,
+        category: values.category,
+        description: values.description,
+        country: values.country.label,
+        price: parseInt(values.price),
+        bedrooms: parseInt(values.bedrooms),
+        guests: parseInt(values.guests),
+        beds: parseInt(values.beds),
+        baths: parseInt(values.baths),
+        image: values.image.name,
+        amenities: JSON.stringify(selectedAmenities),
+        profilePropertiesId: userId,
+        profile: {
+          connect: {
+            id: userId
+          }
+        }
+      };
+
+      const newProperty = await client.graphql({
         query: createProperty,
-        variables: { input: formData },
-      })
-      console.log("newTodo:", newTodo);
+        variables: { 
+          input: formData
+        },
+      });
+      console.log("newProperty:", newProperty);
       toast("Property created successfully");
     } catch (error) {
-      error instanceof Error && toast(error.message);
+      console.error("Error details:", error);
+      if (error instanceof Error) {
+        console.log("Error message:", error.message);
+        toast(error.message);
+      }
       toast("An error occurred while creating the property");
     }
     setSubmitting(false);
