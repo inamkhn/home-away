@@ -20,6 +20,12 @@
       },
       "storage": {
         "storage": {}
+      },
+      "function": {
+        "postSigninFunction": {
+          "deploymentBucketName": "amplify-homeaway-dev-bcde3-deployment",
+          "s3Key": "amplify-builds/postSigninFunction-4c6d3038416179465375-build.zip"
+        }
       }
     }
   }

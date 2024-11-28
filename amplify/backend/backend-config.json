@@ -45,6 +45,31 @@
       "service": "Cognito"
     }
   },
+  "function": {
+    "postSigninFunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_postSigninFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "postSigninFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_postSigninFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "postSigninFunction"
+        }
+      ]
+    }
+  },
   "storage": {
     "storage": {
       "dependsOn": [],

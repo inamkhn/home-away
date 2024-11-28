@@ -4,71 +4,157 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { toast } from "sonner";
+import defaultImg from "../../public/images/default.png";
+import Image from "next/image";
+
+// Add validation schema
+const validationSchema = Yup.object().shape({
+  firstName: Yup.string().required("First name is required"),
+  lastName: Yup.string().required("Last name is required"),
+  username: Yup.string().required("Username is required"),
+});
 
 export default function Profile() {
-  const [profileImage, setProfileImage] = useState(
-    "/placeholder.svg?height=100&width=100"
-  );
+  const [profileImage, setProfileImage] = useState("");
+  const [imagePreview, setImagePreview] = useState(null);
 
-  const handleImageUpdate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const initialValues = {
+    firstName: "",
+    lastName: "",
+    username: "",
+    image: null,
+  };
+
+  const handleImageUpdate = (event, setFieldValue) => {
+    const file = event.currentTarget.files[0];
     if (file) {
+      setFieldValue("image", file);
+      
       const reader = new FileReader();
       reader.onloadend = () => {
-        setProfileImage(reader.result as string);
+        setImagePreview(reader.result);
       };
       reader.readAsDataURL(file);
     }
   };
 
+  const handleSubmit = async (values, { setSubmitting }) => {
+    try {
+      console.log("Form values:", values);
+      if (values.image) {
+        console.log("Image to upload:", values.image);
+      }
+      toast("Profile updated successfully");
+    } catch (error) {
+      console.error("Error:", error);
+      toast(error.message || "An error occurred while updating the profile");
+    }
+    setSubmitting(false);
+  };
+
   return (
     <Card className="w-full max-w-lg mx-auto">
-      {" "}
-      {/* Changed from max-w-md to max-w-2xl */}
       <CardHeader>
         <CardTitle className="text-2xl font-bold">User Profile</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
-        {" "}
-        {/* Increased space-y-4 to space-y-6 for better spacing */}
-        <div className="flex flex-col items-center space-y-2">
-          <img
-            src={profileImage}
-            alt="Profile"
-            className="w-32 h-32 rounded-full object-cover"
-          />
-          <Label htmlFor="profile-image" className="cursor-pointer">
-            <Input
-              id="profile-image"
-              type="file"
-              accept="image/*"
-              className="sr-only"
-              onChange={handleImageUpdate}
-            />
-            <Button variant="outline" size="sm">
-              Update Profile Image
-            </Button>
-          </Label>
-        </div>
-        <div className="grid grid-cols-2 gap-6">
-          {" "}
-          {/* Increased gap-4 to gap-6 */}
-          <div className="space-y-2">
-            <Label htmlFor="first-name">First Name</Label>
-            <Input id="first-name" placeholder="Susan" />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="last-name">Last Name</Label>
-            <Input id="last-name" placeholder="Smith" />
-          </div>
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="username">Username</Label>
-          <Input id="username" placeholder="shakeAndBake" />
-        </div>
-        <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white">
-          Update Profile
-        </Button>
+      <CardContent>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ setFieldValue, isSubmitting }) => (
+            <Form className="space-y-6">
+              <div className="flex flex-col items-center space-y-4">
+                <div className="relative w-32 h-32">
+                  <Image
+                    src={imagePreview || defaultImg.src}
+                    alt="Profile"
+                    width={128}
+                    height={128}
+                    className="w-32 h-32 rounded-full object-cover border-2 border-gray-200 cursor-pointer"
+                    onClick={() => document.getElementById('image').click()}
+                  />
+                  <Label
+                    htmlFor="image"
+                    className="absolute bottom-0 right-0 cursor-pointer"
+                  >
+                    <input
+                      id="image"
+                      name="image"
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handleImageUpdate(e, setFieldValue)}
+                      className="hidden"
+                    />
+                  </Label>
+                </div>
+                <ErrorMessage
+                  name="image"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="firstName">First Name</Label>
+                  <Field
+                    name="firstName"
+                    as={Input}
+                    id="firstName"
+                    placeholder="Susan"
+                  />
+                  <ErrorMessage
+                    name="firstName"
+                    component="div"
+                    className="text-red-500 text-sm"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="lastName">Last Name</Label>
+                  <Field
+                    name="lastName"
+                    as={Input}
+                    id="lastName"
+                    placeholder="Smith"
+                  />
+                  <ErrorMessage
+                    name="lastName"
+                    component="div"
+                    className="text-red-500 text-sm"
+                  />
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="username">Username</Label>
+                <Field
+                  name="username"
+                  as={Input}
+                  id="username"
+                  placeholder="shakeAndBake"
+                />
+                <ErrorMessage
+                  name="username"
+                  component="div"
+                  className="text-red-500 text-sm"
+                />
+              </div>
+
+              <Button 
+                type="submit"
+                className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Updating..." : "Update Profile"}
+              </Button>
+            </Form>
+          )}
+        </Formik>
       </CardContent>
     </Card>
   );

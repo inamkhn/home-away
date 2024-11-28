@@ -16,6 +16,10 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { getCurrentUser } from "aws-amplify/auth";
 import { set } from "react-hook-form";
+import { signOut } from 'aws-amplify/auth';
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+
 
 type Checked = DropdownMenuCheckboxItemProps["checked"];
 
@@ -26,18 +30,33 @@ const Navbar = () => {
   const [userDetails, setUserDetails] = React.useState({});
   const { setTheme } = useTheme();
 
+  const router = useRouter();
+
   useEffect(() => {
-      try {
-        const getCurrentFunction = async () => {
-          const res = await getCurrentUser();
-          console.log("signinDetails:", res);
-          setUserDetails(res);
-        };
-        getCurrentFunction();
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      const getCurrentFunction = async () => {
+        const res = await getCurrentUser();
+        console.log("signinDetails:", res);
+        setUserDetails(res);
+      };
+      getCurrentFunction();
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
+
+  async function handleSignOut() {
+    try {
+      const res = await signOut();
+      if (res) {
+        console.log(res);
+        toast("Signed out successfully");
+      }
+      router.push('/');
+    } catch (error) {
+      console.log('error signing out: ', error);
+    }
+  }
 
   return (
     <div>
@@ -132,7 +151,7 @@ const Navbar = () => {
                   checked={showPanel}
                   onCheckedChange={setShowPanel}
                 >
-                  <p className="text-red-500">Logout</p>
+                  <p className="text-red-500" onClick={handleSignOut}>Logout</p>
                 </DropdownMenuCheckboxItem>
               </DropdownMenuContent>
             </DropdownMenu>
