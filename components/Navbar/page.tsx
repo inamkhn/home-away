@@ -16,10 +16,9 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { getCurrentUser } from "aws-amplify/auth";
 import { set } from "react-hook-form";
-import { signOut } from 'aws-amplify/auth';
+import { signOut } from "aws-amplify/auth";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-
 
 type Checked = DropdownMenuCheckboxItemProps["checked"];
 
@@ -52,9 +51,9 @@ const Navbar = () => {
         console.log(res);
         toast("Signed out successfully");
       }
-      router.push('/');
+      router.push("/");
     } catch (error) {
-      console.log('error signing out: ', error);
+      console.log("error signing out: ", error);
     }
   }
 
@@ -97,63 +96,82 @@ const Navbar = () => {
               <DropdownMenuTrigger asChild>
                 <AlignJustify />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-48 mt-3 bg-white dark:bg-gray-800">
-                <DropdownMenuCheckboxItem
-                  checked={showStatusBar}
-                  onCheckedChange={setShowStatusBar}
-                  className=""
-                >
-                  Home
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={showActivityBar}
-                  onCheckedChange={setShowActivityBar}
-                >
-                  <Link href="/favorites">Favorites</Link>
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={showPanel}
-                  onCheckedChange={setShowPanel}
-                >
-                  <Link href="/bookings">Bookings</Link>
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={showPanel}
-                  onCheckedChange={setShowPanel}
-                >
-                  <Link href="/reviews">Reviews</Link>
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={showPanel}
-                  onCheckedChange={setShowPanel}
-                >
-                  <Link href="/reservations">Reservations</Link>
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={showPanel}
-                  onCheckedChange={setShowPanel}
-                >
-                  <Link href="/properties/add">Create rental</Link>
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={showPanel}
-                  onCheckedChange={setShowPanel}
-                >
-                  <Link href="/myRental">My rental</Link>
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={showPanel}
-                  onCheckedChange={setShowPanel}
-                >
-                  <Link href="/profile">Profile</Link>
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                  checked={showPanel}
-                  onCheckedChange={setShowPanel}
-                >
-                  <p className="text-red-500" onClick={handleSignOut}>Logout</p>
-                </DropdownMenuCheckboxItem>
-              </DropdownMenuContent>
+              {userDetails ? (
+                <DropdownMenuContent className="w-48 mt-3 bg-white dark:bg-gray-800">
+                  <DropdownMenuCheckboxItem
+                    checked={showStatusBar}
+                    onCheckedChange={setShowStatusBar}
+                    className=""
+                  >
+                    Home
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    checked={showActivityBar}
+                    onCheckedChange={setShowActivityBar}
+                  >
+                    <Link href="/favorites">Favorites</Link>
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    checked={showPanel}
+                    onCheckedChange={setShowPanel}
+                  >
+                    <Link href="/bookings">Bookings</Link>
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    checked={showPanel}
+                    onCheckedChange={setShowPanel}
+                  >
+                    <Link href="/reviews">Reviews</Link>
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    checked={showPanel}
+                    onCheckedChange={setShowPanel}
+                  >
+                    <Link href="/reservations">Reservations</Link>
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    checked={showPanel}
+                    onCheckedChange={setShowPanel}
+                  >
+                    <Link href="/properties/add">Create rental</Link>
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    checked={showPanel}
+                    onCheckedChange={setShowPanel}
+                  >
+                    <Link href="/myRental">My rental</Link>
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    checked={showPanel}
+                    onCheckedChange={setShowPanel}
+                  >
+                    <Link href="/profile">Profile</Link>
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    checked={showPanel}
+                    onCheckedChange={setShowPanel}
+                  >
+                    <p className="text-red-500" onClick={handleSignOut}>
+                      Logout
+                    </p>
+                  </DropdownMenuCheckboxItem>
+                </DropdownMenuContent>
+              ) : (
+                <DropdownMenuContent className="w-48 mt-3 bg-white dark:bg-gray-800">
+                  <DropdownMenuCheckboxItem
+                    checked={showPanel}
+                    onCheckedChange={setShowPanel}
+                  >
+                    <Link href="/signin">Signin</Link>
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    checked={showPanel}
+                    onCheckedChange={setShowPanel}
+                  >
+                    <Link href="/signup">Signup</Link>
+                  </DropdownMenuCheckboxItem>
+                </DropdownMenuContent>
+              )}
             </DropdownMenu>
             <CircleUserRound size={42} strokeWidth={0.5} />
           </div>

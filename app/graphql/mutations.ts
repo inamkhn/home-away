@@ -8,6 +8,56 @@ type GeneratedMutation<InputType, OutputType> = string & {
   __generatedMutationOutput: OutputType;
 };
 
+export const updateFavorite = /* GraphQL */ `mutation UpdateFavorite(
+  $input: UpdateFavoriteInput!
+  $condition: ModelFavoriteConditionInput
+) {
+  updateFavorite(input: $input, condition: $condition) {
+    id
+    createdAt
+    updatedAt
+    profile {
+      id
+      firstName
+      lastName
+      username
+      email
+      profileImage
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    property {
+      id
+      name
+      tagline
+      category
+      image
+      country
+      description
+      price
+      guests
+      bedrooms
+      beds
+      baths
+      amenities
+      createdAt
+      updatedAt
+      profilePropertiesId
+      owner
+      __typename
+    }
+    profileFavoritesId
+    propertyFavoritesId
+    owner
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateFavoriteMutationVariables,
+  APITypes.UpdateFavoriteMutation
+>;
 export const createProfile = /* GraphQL */ `mutation CreateProfile(
   $input: CreateProfileInput!
   $condition: ModelProfileConditionInput
@@ -37,6 +87,7 @@ export const createProfile = /* GraphQL */ `mutation CreateProfile(
       nextToken
       __typename
     }
+    owner
     __typename
   }
 }
@@ -73,6 +124,7 @@ export const updateProfile = /* GraphQL */ `mutation UpdateProfile(
       nextToken
       __typename
     }
+    owner
     __typename
   }
 }
@@ -109,6 +161,7 @@ export const deleteProfile = /* GraphQL */ `mutation DeleteProfile(
       nextToken
       __typename
     }
+    owner
     __typename
   }
 }
@@ -145,6 +198,7 @@ export const createProperty = /* GraphQL */ `mutation CreateProperty(
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     favorites {
@@ -160,6 +214,7 @@ export const createProperty = /* GraphQL */ `mutation CreateProperty(
       __typename
     }
     profilePropertiesId
+    owner
     __typename
   }
 }
@@ -196,6 +251,7 @@ export const updateProperty = /* GraphQL */ `mutation UpdateProperty(
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     favorites {
@@ -211,6 +267,7 @@ export const updateProperty = /* GraphQL */ `mutation UpdateProperty(
       __typename
     }
     profilePropertiesId
+    owner
     __typename
   }
 }
@@ -247,6 +304,7 @@ export const deleteProperty = /* GraphQL */ `mutation DeleteProperty(
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     favorites {
@@ -262,6 +320,7 @@ export const deleteProperty = /* GraphQL */ `mutation DeleteProperty(
       __typename
     }
     profilePropertiesId
+    owner
     __typename
   }
 }
@@ -286,6 +345,7 @@ export const createFavorite = /* GraphQL */ `mutation CreateFavorite(
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -305,63 +365,18 @@ export const createFavorite = /* GraphQL */ `mutation CreateFavorite(
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     profileFavoritesId
     propertyFavoritesId
+    owner
     __typename
   }
 }
 ` as GeneratedMutation<
   APITypes.CreateFavoriteMutationVariables,
   APITypes.CreateFavoriteMutation
->;
-export const updateFavorite = /* GraphQL */ `mutation UpdateFavorite(
-  $input: UpdateFavoriteInput!
-  $condition: ModelFavoriteConditionInput
-) {
-  updateFavorite(input: $input, condition: $condition) {
-    id
-    createdAt
-    updatedAt
-    profile {
-      id
-      firstName
-      lastName
-      username
-      email
-      profileImage
-      createdAt
-      updatedAt
-      __typename
-    }
-    property {
-      id
-      name
-      tagline
-      category
-      image
-      country
-      description
-      price
-      guests
-      bedrooms
-      beds
-      baths
-      amenities
-      createdAt
-      updatedAt
-      profilePropertiesId
-      __typename
-    }
-    profileFavoritesId
-    propertyFavoritesId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.UpdateFavoriteMutationVariables,
-  APITypes.UpdateFavoriteMutation
 >;
 export const deleteFavorite = /* GraphQL */ `mutation DeleteFavorite(
   $input: DeleteFavoriteInput!
@@ -380,6 +395,7 @@ export const deleteFavorite = /* GraphQL */ `mutation DeleteFavorite(
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -399,10 +415,12 @@ export const deleteFavorite = /* GraphQL */ `mutation DeleteFavorite(
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     profileFavoritesId
     propertyFavoritesId
+    owner
     __typename
   }
 }
@@ -425,6 +443,7 @@ export const createReview = /* GraphQL */ `mutation CreateReview(
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -444,6 +463,7 @@ export const createReview = /* GraphQL */ `mutation CreateReview(
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     rating
@@ -452,6 +472,7 @@ export const createReview = /* GraphQL */ `mutation CreateReview(
     updatedAt
     profileReviewsId
     propertyReviewsId
+    owner
     __typename
   }
 }
@@ -474,6 +495,7 @@ export const updateReview = /* GraphQL */ `mutation UpdateReview(
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -493,6 +515,7 @@ export const updateReview = /* GraphQL */ `mutation UpdateReview(
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     rating
@@ -501,6 +524,7 @@ export const updateReview = /* GraphQL */ `mutation UpdateReview(
     updatedAt
     profileReviewsId
     propertyReviewsId
+    owner
     __typename
   }
 }
@@ -523,6 +547,7 @@ export const deleteReview = /* GraphQL */ `mutation DeleteReview(
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -542,6 +567,7 @@ export const deleteReview = /* GraphQL */ `mutation DeleteReview(
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     rating
@@ -550,6 +576,7 @@ export const deleteReview = /* GraphQL */ `mutation DeleteReview(
     updatedAt
     profileReviewsId
     propertyReviewsId
+    owner
     __typename
   }
 }
@@ -572,6 +599,7 @@ export const createBooking = /* GraphQL */ `mutation CreateBooking(
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -591,6 +619,7 @@ export const createBooking = /* GraphQL */ `mutation CreateBooking(
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     orderTotal
@@ -602,6 +631,7 @@ export const createBooking = /* GraphQL */ `mutation CreateBooking(
     updatedAt
     profileBookingsId
     propertyBookingsId
+    owner
     __typename
   }
 }
@@ -624,6 +654,7 @@ export const updateBooking = /* GraphQL */ `mutation UpdateBooking(
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -643,6 +674,7 @@ export const updateBooking = /* GraphQL */ `mutation UpdateBooking(
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     orderTotal
@@ -654,6 +686,7 @@ export const updateBooking = /* GraphQL */ `mutation UpdateBooking(
     updatedAt
     profileBookingsId
     propertyBookingsId
+    owner
     __typename
   }
 }
@@ -676,6 +709,7 @@ export const deleteBooking = /* GraphQL */ `mutation DeleteBooking(
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -695,6 +729,7 @@ export const deleteBooking = /* GraphQL */ `mutation DeleteBooking(
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     orderTotal
@@ -706,6 +741,7 @@ export const deleteBooking = /* GraphQL */ `mutation DeleteBooking(
     updatedAt
     profileBookingsId
     propertyBookingsId
+    owner
     __typename
   }
 }

@@ -8,8 +8,11 @@ type GeneratedSubscription<InputType, OutputType> = string & {
   __generatedSubscriptionOutput: OutputType;
 };
 
-export const onCreateProfile = /* GraphQL */ `subscription OnCreateProfile($filter: ModelSubscriptionProfileFilterInput) {
-  onCreateProfile(filter: $filter) {
+export const onCreateProfile = /* GraphQL */ `subscription OnCreateProfile(
+  $filter: ModelSubscriptionProfileFilterInput
+  $owner: String
+) {
+  onCreateProfile(filter: $filter, owner: $owner) {
     id
     firstName
     lastName
@@ -34,6 +37,7 @@ export const onCreateProfile = /* GraphQL */ `subscription OnCreateProfile($filt
       nextToken
       __typename
     }
+    owner
     __typename
   }
 }
@@ -41,8 +45,11 @@ export const onCreateProfile = /* GraphQL */ `subscription OnCreateProfile($filt
   APITypes.OnCreateProfileSubscriptionVariables,
   APITypes.OnCreateProfileSubscription
 >;
-export const onUpdateProfile = /* GraphQL */ `subscription OnUpdateProfile($filter: ModelSubscriptionProfileFilterInput) {
-  onUpdateProfile(filter: $filter) {
+export const onUpdateProfile = /* GraphQL */ `subscription OnUpdateProfile(
+  $filter: ModelSubscriptionProfileFilterInput
+  $owner: String
+) {
+  onUpdateProfile(filter: $filter, owner: $owner) {
     id
     firstName
     lastName
@@ -67,6 +74,7 @@ export const onUpdateProfile = /* GraphQL */ `subscription OnUpdateProfile($filt
       nextToken
       __typename
     }
+    owner
     __typename
   }
 }
@@ -74,8 +82,11 @@ export const onUpdateProfile = /* GraphQL */ `subscription OnUpdateProfile($filt
   APITypes.OnUpdateProfileSubscriptionVariables,
   APITypes.OnUpdateProfileSubscription
 >;
-export const onDeleteProfile = /* GraphQL */ `subscription OnDeleteProfile($filter: ModelSubscriptionProfileFilterInput) {
-  onDeleteProfile(filter: $filter) {
+export const onDeleteProfile = /* GraphQL */ `subscription OnDeleteProfile(
+  $filter: ModelSubscriptionProfileFilterInput
+  $owner: String
+) {
+  onDeleteProfile(filter: $filter, owner: $owner) {
     id
     firstName
     lastName
@@ -100,6 +111,7 @@ export const onDeleteProfile = /* GraphQL */ `subscription OnDeleteProfile($filt
       nextToken
       __typename
     }
+    owner
     __typename
   }
 }
@@ -107,8 +119,11 @@ export const onDeleteProfile = /* GraphQL */ `subscription OnDeleteProfile($filt
   APITypes.OnDeleteProfileSubscriptionVariables,
   APITypes.OnDeleteProfileSubscription
 >;
-export const onCreateProperty = /* GraphQL */ `subscription OnCreateProperty($filter: ModelSubscriptionPropertyFilterInput) {
-  onCreateProperty(filter: $filter) {
+export const onCreateProperty = /* GraphQL */ `subscription OnCreateProperty(
+  $filter: ModelSubscriptionPropertyFilterInput
+  $owner: String
+) {
+  onCreateProperty(filter: $filter, owner: $owner) {
     id
     name
     tagline
@@ -133,6 +148,7 @@ export const onCreateProperty = /* GraphQL */ `subscription OnCreateProperty($fi
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     favorites {
@@ -148,6 +164,7 @@ export const onCreateProperty = /* GraphQL */ `subscription OnCreateProperty($fi
       __typename
     }
     profilePropertiesId
+    owner
     __typename
   }
 }
@@ -155,8 +172,11 @@ export const onCreateProperty = /* GraphQL */ `subscription OnCreateProperty($fi
   APITypes.OnCreatePropertySubscriptionVariables,
   APITypes.OnCreatePropertySubscription
 >;
-export const onUpdateProperty = /* GraphQL */ `subscription OnUpdateProperty($filter: ModelSubscriptionPropertyFilterInput) {
-  onUpdateProperty(filter: $filter) {
+export const onUpdateProperty = /* GraphQL */ `subscription OnUpdateProperty(
+  $filter: ModelSubscriptionPropertyFilterInput
+  $owner: String
+) {
+  onUpdateProperty(filter: $filter, owner: $owner) {
     id
     name
     tagline
@@ -181,6 +201,7 @@ export const onUpdateProperty = /* GraphQL */ `subscription OnUpdateProperty($fi
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     favorites {
@@ -196,6 +217,7 @@ export const onUpdateProperty = /* GraphQL */ `subscription OnUpdateProperty($fi
       __typename
     }
     profilePropertiesId
+    owner
     __typename
   }
 }
@@ -203,8 +225,11 @@ export const onUpdateProperty = /* GraphQL */ `subscription OnUpdateProperty($fi
   APITypes.OnUpdatePropertySubscriptionVariables,
   APITypes.OnUpdatePropertySubscription
 >;
-export const onDeleteProperty = /* GraphQL */ `subscription OnDeleteProperty($filter: ModelSubscriptionPropertyFilterInput) {
-  onDeleteProperty(filter: $filter) {
+export const onDeleteProperty = /* GraphQL */ `subscription OnDeleteProperty(
+  $filter: ModelSubscriptionPropertyFilterInput
+  $owner: String
+) {
+  onDeleteProperty(filter: $filter, owner: $owner) {
     id
     name
     tagline
@@ -229,6 +254,7 @@ export const onDeleteProperty = /* GraphQL */ `subscription OnDeleteProperty($fi
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     favorites {
@@ -244,6 +270,7 @@ export const onDeleteProperty = /* GraphQL */ `subscription OnDeleteProperty($fi
       __typename
     }
     profilePropertiesId
+    owner
     __typename
   }
 }
@@ -251,8 +278,11 @@ export const onDeleteProperty = /* GraphQL */ `subscription OnDeleteProperty($fi
   APITypes.OnDeletePropertySubscriptionVariables,
   APITypes.OnDeletePropertySubscription
 >;
-export const onCreateFavorite = /* GraphQL */ `subscription OnCreateFavorite($filter: ModelSubscriptionFavoriteFilterInput) {
-  onCreateFavorite(filter: $filter) {
+export const onCreateFavorite = /* GraphQL */ `subscription OnCreateFavorite(
+  $filter: ModelSubscriptionFavoriteFilterInput
+  $owner: String
+) {
+  onCreateFavorite(filter: $filter, owner: $owner) {
     id
     createdAt
     updatedAt
@@ -265,6 +295,7 @@ export const onCreateFavorite = /* GraphQL */ `subscription OnCreateFavorite($fi
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -284,10 +315,12 @@ export const onCreateFavorite = /* GraphQL */ `subscription OnCreateFavorite($fi
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     profileFavoritesId
     propertyFavoritesId
+    owner
     __typename
   }
 }
@@ -295,8 +328,11 @@ export const onCreateFavorite = /* GraphQL */ `subscription OnCreateFavorite($fi
   APITypes.OnCreateFavoriteSubscriptionVariables,
   APITypes.OnCreateFavoriteSubscription
 >;
-export const onUpdateFavorite = /* GraphQL */ `subscription OnUpdateFavorite($filter: ModelSubscriptionFavoriteFilterInput) {
-  onUpdateFavorite(filter: $filter) {
+export const onUpdateFavorite = /* GraphQL */ `subscription OnUpdateFavorite(
+  $filter: ModelSubscriptionFavoriteFilterInput
+  $owner: String
+) {
+  onUpdateFavorite(filter: $filter, owner: $owner) {
     id
     createdAt
     updatedAt
@@ -309,6 +345,7 @@ export const onUpdateFavorite = /* GraphQL */ `subscription OnUpdateFavorite($fi
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -328,10 +365,12 @@ export const onUpdateFavorite = /* GraphQL */ `subscription OnUpdateFavorite($fi
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     profileFavoritesId
     propertyFavoritesId
+    owner
     __typename
   }
 }
@@ -339,8 +378,11 @@ export const onUpdateFavorite = /* GraphQL */ `subscription OnUpdateFavorite($fi
   APITypes.OnUpdateFavoriteSubscriptionVariables,
   APITypes.OnUpdateFavoriteSubscription
 >;
-export const onDeleteFavorite = /* GraphQL */ `subscription OnDeleteFavorite($filter: ModelSubscriptionFavoriteFilterInput) {
-  onDeleteFavorite(filter: $filter) {
+export const onDeleteFavorite = /* GraphQL */ `subscription OnDeleteFavorite(
+  $filter: ModelSubscriptionFavoriteFilterInput
+  $owner: String
+) {
+  onDeleteFavorite(filter: $filter, owner: $owner) {
     id
     createdAt
     updatedAt
@@ -353,6 +395,7 @@ export const onDeleteFavorite = /* GraphQL */ `subscription OnDeleteFavorite($fi
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -372,10 +415,12 @@ export const onDeleteFavorite = /* GraphQL */ `subscription OnDeleteFavorite($fi
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     profileFavoritesId
     propertyFavoritesId
+    owner
     __typename
   }
 }
@@ -383,8 +428,11 @@ export const onDeleteFavorite = /* GraphQL */ `subscription OnDeleteFavorite($fi
   APITypes.OnDeleteFavoriteSubscriptionVariables,
   APITypes.OnDeleteFavoriteSubscription
 >;
-export const onCreateReview = /* GraphQL */ `subscription OnCreateReview($filter: ModelSubscriptionReviewFilterInput) {
-  onCreateReview(filter: $filter) {
+export const onCreateReview = /* GraphQL */ `subscription OnCreateReview(
+  $filter: ModelSubscriptionReviewFilterInput
+  $owner: String
+) {
+  onCreateReview(filter: $filter, owner: $owner) {
     id
     profile {
       id
@@ -395,6 +443,7 @@ export const onCreateReview = /* GraphQL */ `subscription OnCreateReview($filter
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -414,6 +463,7 @@ export const onCreateReview = /* GraphQL */ `subscription OnCreateReview($filter
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     rating
@@ -422,6 +472,7 @@ export const onCreateReview = /* GraphQL */ `subscription OnCreateReview($filter
     updatedAt
     profileReviewsId
     propertyReviewsId
+    owner
     __typename
   }
 }
@@ -429,8 +480,11 @@ export const onCreateReview = /* GraphQL */ `subscription OnCreateReview($filter
   APITypes.OnCreateReviewSubscriptionVariables,
   APITypes.OnCreateReviewSubscription
 >;
-export const onUpdateReview = /* GraphQL */ `subscription OnUpdateReview($filter: ModelSubscriptionReviewFilterInput) {
-  onUpdateReview(filter: $filter) {
+export const onUpdateReview = /* GraphQL */ `subscription OnUpdateReview(
+  $filter: ModelSubscriptionReviewFilterInput
+  $owner: String
+) {
+  onUpdateReview(filter: $filter, owner: $owner) {
     id
     profile {
       id
@@ -441,6 +495,7 @@ export const onUpdateReview = /* GraphQL */ `subscription OnUpdateReview($filter
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -460,6 +515,7 @@ export const onUpdateReview = /* GraphQL */ `subscription OnUpdateReview($filter
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     rating
@@ -468,6 +524,7 @@ export const onUpdateReview = /* GraphQL */ `subscription OnUpdateReview($filter
     updatedAt
     profileReviewsId
     propertyReviewsId
+    owner
     __typename
   }
 }
@@ -475,8 +532,11 @@ export const onUpdateReview = /* GraphQL */ `subscription OnUpdateReview($filter
   APITypes.OnUpdateReviewSubscriptionVariables,
   APITypes.OnUpdateReviewSubscription
 >;
-export const onDeleteReview = /* GraphQL */ `subscription OnDeleteReview($filter: ModelSubscriptionReviewFilterInput) {
-  onDeleteReview(filter: $filter) {
+export const onDeleteReview = /* GraphQL */ `subscription OnDeleteReview(
+  $filter: ModelSubscriptionReviewFilterInput
+  $owner: String
+) {
+  onDeleteReview(filter: $filter, owner: $owner) {
     id
     profile {
       id
@@ -487,6 +547,7 @@ export const onDeleteReview = /* GraphQL */ `subscription OnDeleteReview($filter
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -506,6 +567,7 @@ export const onDeleteReview = /* GraphQL */ `subscription OnDeleteReview($filter
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     rating
@@ -514,6 +576,7 @@ export const onDeleteReview = /* GraphQL */ `subscription OnDeleteReview($filter
     updatedAt
     profileReviewsId
     propertyReviewsId
+    owner
     __typename
   }
 }
@@ -521,8 +584,11 @@ export const onDeleteReview = /* GraphQL */ `subscription OnDeleteReview($filter
   APITypes.OnDeleteReviewSubscriptionVariables,
   APITypes.OnDeleteReviewSubscription
 >;
-export const onCreateBooking = /* GraphQL */ `subscription OnCreateBooking($filter: ModelSubscriptionBookingFilterInput) {
-  onCreateBooking(filter: $filter) {
+export const onCreateBooking = /* GraphQL */ `subscription OnCreateBooking(
+  $filter: ModelSubscriptionBookingFilterInput
+  $owner: String
+) {
+  onCreateBooking(filter: $filter, owner: $owner) {
     id
     profile {
       id
@@ -533,6 +599,7 @@ export const onCreateBooking = /* GraphQL */ `subscription OnCreateBooking($filt
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -552,6 +619,7 @@ export const onCreateBooking = /* GraphQL */ `subscription OnCreateBooking($filt
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     orderTotal
@@ -563,6 +631,7 @@ export const onCreateBooking = /* GraphQL */ `subscription OnCreateBooking($filt
     updatedAt
     profileBookingsId
     propertyBookingsId
+    owner
     __typename
   }
 }
@@ -570,8 +639,11 @@ export const onCreateBooking = /* GraphQL */ `subscription OnCreateBooking($filt
   APITypes.OnCreateBookingSubscriptionVariables,
   APITypes.OnCreateBookingSubscription
 >;
-export const onUpdateBooking = /* GraphQL */ `subscription OnUpdateBooking($filter: ModelSubscriptionBookingFilterInput) {
-  onUpdateBooking(filter: $filter) {
+export const onUpdateBooking = /* GraphQL */ `subscription OnUpdateBooking(
+  $filter: ModelSubscriptionBookingFilterInput
+  $owner: String
+) {
+  onUpdateBooking(filter: $filter, owner: $owner) {
     id
     profile {
       id
@@ -582,6 +654,7 @@ export const onUpdateBooking = /* GraphQL */ `subscription OnUpdateBooking($filt
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -601,6 +674,7 @@ export const onUpdateBooking = /* GraphQL */ `subscription OnUpdateBooking($filt
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     orderTotal
@@ -612,6 +686,7 @@ export const onUpdateBooking = /* GraphQL */ `subscription OnUpdateBooking($filt
     updatedAt
     profileBookingsId
     propertyBookingsId
+    owner
     __typename
   }
 }
@@ -619,8 +694,11 @@ export const onUpdateBooking = /* GraphQL */ `subscription OnUpdateBooking($filt
   APITypes.OnUpdateBookingSubscriptionVariables,
   APITypes.OnUpdateBookingSubscription
 >;
-export const onDeleteBooking = /* GraphQL */ `subscription OnDeleteBooking($filter: ModelSubscriptionBookingFilterInput) {
-  onDeleteBooking(filter: $filter) {
+export const onDeleteBooking = /* GraphQL */ `subscription OnDeleteBooking(
+  $filter: ModelSubscriptionBookingFilterInput
+  $owner: String
+) {
+  onDeleteBooking(filter: $filter, owner: $owner) {
     id
     profile {
       id
@@ -631,6 +709,7 @@ export const onDeleteBooking = /* GraphQL */ `subscription OnDeleteBooking($filt
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -650,6 +729,7 @@ export const onDeleteBooking = /* GraphQL */ `subscription OnDeleteBooking($filt
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     orderTotal
@@ -661,6 +741,7 @@ export const onDeleteBooking = /* GraphQL */ `subscription OnDeleteBooking($filt
     updatedAt
     profileBookingsId
     propertyBookingsId
+    owner
     __typename
   }
 }

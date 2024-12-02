@@ -1,4 +1,9 @@
-type Profile @model @auth(rules: [{ allow: public }]) {
+type Profile @model 
+@auth(rules: [
+  { allow: owner, operations: [create, read, update, delete] },
+  { allow: public, operations: [read] },
+  { allow: private, operations: [read] }
+]) {
   id: ID!
   firstName: String!
   lastName: String!
@@ -13,7 +18,12 @@ type Profile @model @auth(rules: [{ allow: public }]) {
   bookings: [Booking] @hasMany
 }
 
-type Property @model @auth(rules: [{ allow: public }]) {
+type Property @model 
+@auth(rules: [
+  { allow: owner, operations: [create, read, update, delete] },
+  { allow: public, operations: [read] },
+  { allow: private, operations: [read] }
+]) {
   id: ID!
   name: String!
   tagline: String!
@@ -35,7 +45,11 @@ type Property @model @auth(rules: [{ allow: public }]) {
   bookings: [Booking] @hasMany
 }
 
-type Favorite @model @auth(rules: [{ allow: public }]) {
+type Favorite @model 
+@auth(rules: [
+  { allow: owner, operations: [create, read, delete] },
+  { allow: private, operations: [read] }
+]) {
   id: ID!
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
@@ -43,7 +57,12 @@ type Favorite @model @auth(rules: [{ allow: public }]) {
   property: Property! @belongsTo
 }
 
-type Review @model @auth(rules: [{ allow: public }]) {
+type Review @model 
+@auth(rules: [
+  { allow: owner, operations: [create, read, update, delete] },
+  { allow: public, operations: [read] },
+  { allow: private, operations: [read] }
+]) {
   id: ID!
   profile: Profile! @belongsTo
   property: Property! @belongsTo
@@ -53,7 +72,12 @@ type Review @model @auth(rules: [{ allow: public }]) {
   updatedAt: AWSDateTime!
 }
 
-type Booking @model @auth(rules: [{ allow: public }]) {
+type Booking @model 
+@auth(rules: [
+  { allow: owner, operations: [create, read] },
+  { allow: private, operations: [read] },
+  { allow: groups, groups: ["Admin"], operations: [read, update, delete] }
+]) {
   id: ID!
   profile: Profile! @belongsTo
   property: Property! @belongsTo

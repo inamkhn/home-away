@@ -34,6 +34,7 @@ export const getProfile = /* GraphQL */ `query GetProfile($id: ID!) {
       nextToken
       __typename
     }
+    owner
     __typename
   }
 }
@@ -56,6 +57,7 @@ export const listProfiles = /* GraphQL */ `query ListProfiles(
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     nextToken
@@ -92,6 +94,7 @@ export const getProperty = /* GraphQL */ `query GetProperty($id: ID!) {
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     favorites {
@@ -107,6 +110,7 @@ export const getProperty = /* GraphQL */ `query GetProperty($id: ID!) {
       __typename
     }
     profilePropertiesId
+    owner
     __typename
   }
 }
@@ -137,6 +141,7 @@ export const listProperties = /* GraphQL */ `query ListProperties(
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     nextToken
@@ -161,6 +166,7 @@ export const getFavorite = /* GraphQL */ `query GetFavorite($id: ID!) {
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -180,10 +186,12 @@ export const getFavorite = /* GraphQL */ `query GetFavorite($id: ID!) {
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     profileFavoritesId
     propertyFavoritesId
+    owner
     __typename
   }
 }
@@ -203,6 +211,7 @@ export const listFavorites = /* GraphQL */ `query ListFavorites(
       updatedAt
       profileFavoritesId
       propertyFavoritesId
+      owner
       __typename
     }
     nextToken
@@ -225,6 +234,7 @@ export const getReview = /* GraphQL */ `query GetReview($id: ID!) {
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -244,6 +254,7 @@ export const getReview = /* GraphQL */ `query GetReview($id: ID!) {
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     rating
@@ -252,6 +263,7 @@ export const getReview = /* GraphQL */ `query GetReview($id: ID!) {
     updatedAt
     profileReviewsId
     propertyReviewsId
+    owner
     __typename
   }
 }
@@ -270,6 +282,7 @@ export const listReviews = /* GraphQL */ `query ListReviews(
       updatedAt
       profileReviewsId
       propertyReviewsId
+      owner
       __typename
     }
     nextToken
@@ -292,6 +305,7 @@ export const getBooking = /* GraphQL */ `query GetBooking($id: ID!) {
       profileImage
       createdAt
       updatedAt
+      owner
       __typename
     }
     property {
@@ -311,6 +325,7 @@ export const getBooking = /* GraphQL */ `query GetBooking($id: ID!) {
       createdAt
       updatedAt
       profilePropertiesId
+      owner
       __typename
     }
     orderTotal
@@ -322,6 +337,7 @@ export const getBooking = /* GraphQL */ `query GetBooking($id: ID!) {
     updatedAt
     profileBookingsId
     propertyBookingsId
+    owner
     __typename
   }
 }
@@ -346,6 +362,7 @@ export const listBookings = /* GraphQL */ `query ListBookings(
       updatedAt
       profileBookingsId
       propertyBookingsId
+      owner
       __typename
     }
     nextToken

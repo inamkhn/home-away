@@ -2,28 +2,23 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateProfileInput = {
-  id?: string | null,
-  firstName: string,
-  lastName: string,
-  username: string,
-  email: string,
-  profileImage?: string | null,
+export type UpdateFavoriteInput = {
+  id: string,
   createdAt?: string | null,
   updatedAt?: string | null,
+  profileFavoritesId?: string | null,
+  propertyFavoritesId?: string | null,
 };
 
-export type ModelProfileConditionInput = {
-  firstName?: ModelStringInput | null,
-  lastName?: ModelStringInput | null,
-  username?: ModelStringInput | null,
-  email?: ModelStringInput | null,
-  profileImage?: ModelStringInput | null,
+export type ModelFavoriteConditionInput = {
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
-  and?: Array< ModelProfileConditionInput | null > | null,
-  or?: Array< ModelProfileConditionInput | null > | null,
-  not?: ModelProfileConditionInput | null,
+  and?: Array< ModelFavoriteConditionInput | null > | null,
+  or?: Array< ModelFavoriteConditionInput | null > | null,
+  not?: ModelFavoriteConditionInput | null,
+  profileFavoritesId?: ModelIDInput | null,
+  propertyFavoritesId?: ModelIDInput | null,
+  owner?: ModelStringInput | null,
 };
 
 export type ModelStringInput = {
@@ -66,6 +61,34 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
+export type Favorite = {
+  __typename: "Favorite",
+  id: string,
+  createdAt: string,
+  updatedAt: string,
+  profile: Profile,
+  property: Property,
+  profileFavoritesId?: string | null,
+  propertyFavoritesId?: string | null,
+  owner?: string | null,
+};
+
 export type Profile = {
   __typename: "Profile",
   id: string,
@@ -80,6 +103,7 @@ export type Profile = {
   favorites?: ModelFavoriteConnection | null,
   reviews?: ModelReviewConnection | null,
   bookings?: ModelBookingConnection | null,
+  owner?: string | null,
 };
 
 export type ModelPropertyConnection = {
@@ -110,23 +134,13 @@ export type Property = {
   reviews?: ModelReviewConnection | null,
   bookings?: ModelBookingConnection | null,
   profilePropertiesId?: string | null,
+  owner?: string | null,
 };
 
 export type ModelFavoriteConnection = {
   __typename: "ModelFavoriteConnection",
   items:  Array<Favorite | null >,
   nextToken?: string | null,
-};
-
-export type Favorite = {
-  __typename: "Favorite",
-  id: string,
-  createdAt: string,
-  updatedAt: string,
-  profile: Profile,
-  property: Property,
-  profileFavoritesId?: string | null,
-  propertyFavoritesId?: string | null,
 };
 
 export type ModelReviewConnection = {
@@ -146,6 +160,7 @@ export type Review = {
   updatedAt: string,
   profileReviewsId?: string | null,
   propertyReviewsId?: string | null,
+  owner?: string | null,
 };
 
 export type ModelBookingConnection = {
@@ -168,6 +183,32 @@ export type Booking = {
   updatedAt: string,
   profileBookingsId?: string | null,
   propertyBookingsId?: string | null,
+  owner?: string | null,
+};
+
+export type CreateProfileInput = {
+  id?: string | null,
+  firstName: string,
+  lastName: string,
+  username: string,
+  email: string,
+  profileImage?: string | null,
+  createdAt?: string | null,
+  updatedAt?: string | null,
+};
+
+export type ModelProfileConditionInput = {
+  firstName?: ModelStringInput | null,
+  lastName?: ModelStringInput | null,
+  username?: ModelStringInput | null,
+  email?: ModelStringInput | null,
+  profileImage?: ModelStringInput | null,
+  createdAt?: ModelStringInput | null,
+  updatedAt?: ModelStringInput | null,
+  and?: Array< ModelProfileConditionInput | null > | null,
+  or?: Array< ModelProfileConditionInput | null > | null,
+  not?: ModelProfileConditionInput | null,
+  owner?: ModelStringInput | null,
 };
 
 export type UpdateProfileInput = {
@@ -223,6 +264,7 @@ export type ModelPropertyConditionInput = {
   or?: Array< ModelPropertyConditionInput | null > | null,
   not?: ModelPropertyConditionInput | null,
   profilePropertiesId?: ModelIDInput | null,
+  owner?: ModelStringInput | null,
 };
 
 export type ModelIntInput = {
@@ -235,22 +277,6 @@ export type ModelIntInput = {
   between?: Array< number | null > | null,
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
-};
-
-export type ModelIDInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
 };
 
 export type UpdatePropertyInput = {
@@ -284,24 +310,6 @@ export type CreateFavoriteInput = {
   propertyFavoritesId?: string | null,
 };
 
-export type ModelFavoriteConditionInput = {
-  createdAt?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
-  and?: Array< ModelFavoriteConditionInput | null > | null,
-  or?: Array< ModelFavoriteConditionInput | null > | null,
-  not?: ModelFavoriteConditionInput | null,
-  profileFavoritesId?: ModelIDInput | null,
-  propertyFavoritesId?: ModelIDInput | null,
-};
-
-export type UpdateFavoriteInput = {
-  id: string,
-  createdAt?: string | null,
-  updatedAt?: string | null,
-  profileFavoritesId?: string | null,
-  propertyFavoritesId?: string | null,
-};
-
 export type DeleteFavoriteInput = {
   id: string,
 };
@@ -326,6 +334,7 @@ export type ModelReviewConditionInput = {
   not?: ModelReviewConditionInput | null,
   profileReviewsId?: ModelIDInput | null,
   propertyReviewsId?: ModelIDInput | null,
+  owner?: ModelStringInput | null,
 };
 
 export type UpdateReviewInput = {
@@ -368,6 +377,7 @@ export type ModelBookingConditionInput = {
   not?: ModelBookingConditionInput | null,
   profileBookingsId?: ModelIDInput | null,
   propertyBookingsId?: ModelIDInput | null,
+  owner?: ModelStringInput | null,
 };
 
 export type ModelBooleanInput = {
@@ -406,6 +416,7 @@ export type ModelProfileFilterInput = {
   and?: Array< ModelProfileFilterInput | null > | null,
   or?: Array< ModelProfileFilterInput | null > | null,
   not?: ModelProfileFilterInput | null,
+  owner?: ModelStringInput | null,
 };
 
 export type ModelProfileConnection = {
@@ -434,6 +445,7 @@ export type ModelPropertyFilterInput = {
   or?: Array< ModelPropertyFilterInput | null > | null,
   not?: ModelPropertyFilterInput | null,
   profilePropertiesId?: ModelIDInput | null,
+  owner?: ModelStringInput | null,
 };
 
 export type ModelFavoriteFilterInput = {
@@ -445,6 +457,7 @@ export type ModelFavoriteFilterInput = {
   not?: ModelFavoriteFilterInput | null,
   profileFavoritesId?: ModelIDInput | null,
   propertyFavoritesId?: ModelIDInput | null,
+  owner?: ModelStringInput | null,
 };
 
 export type ModelReviewFilterInput = {
@@ -458,6 +471,7 @@ export type ModelReviewFilterInput = {
   not?: ModelReviewFilterInput | null,
   profileReviewsId?: ModelIDInput | null,
   propertyReviewsId?: ModelIDInput | null,
+  owner?: ModelStringInput | null,
 };
 
 export type ModelBookingFilterInput = {
@@ -474,6 +488,7 @@ export type ModelBookingFilterInput = {
   not?: ModelBookingFilterInput | null,
   profileBookingsId?: ModelIDInput | null,
   propertyBookingsId?: ModelIDInput | null,
+  owner?: ModelStringInput | null,
 };
 
 export type ModelSubscriptionProfileFilterInput = {
@@ -491,6 +506,7 @@ export type ModelSubscriptionProfileFilterInput = {
   profileFavoritesId?: ModelSubscriptionIDInput | null,
   profileReviewsId?: ModelSubscriptionIDInput | null,
   profileBookingsId?: ModelSubscriptionIDInput | null,
+  owner?: ModelStringInput | null,
 };
 
 export type ModelSubscriptionIDInput = {
@@ -544,6 +560,7 @@ export type ModelSubscriptionPropertyFilterInput = {
   propertyFavoritesId?: ModelSubscriptionIDInput | null,
   propertyReviewsId?: ModelSubscriptionIDInput | null,
   propertyBookingsId?: ModelSubscriptionIDInput | null,
+  owner?: ModelStringInput | null,
 };
 
 export type ModelSubscriptionIntInput = {
@@ -564,6 +581,7 @@ export type ModelSubscriptionFavoriteFilterInput = {
   updatedAt?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionFavoriteFilterInput | null > | null,
   or?: Array< ModelSubscriptionFavoriteFilterInput | null > | null,
+  owner?: ModelStringInput | null,
 };
 
 export type ModelSubscriptionReviewFilterInput = {
@@ -574,6 +592,7 @@ export type ModelSubscriptionReviewFilterInput = {
   updatedAt?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionReviewFilterInput | null > | null,
   or?: Array< ModelSubscriptionReviewFilterInput | null > | null,
+  owner?: ModelStringInput | null,
 };
 
 export type ModelSubscriptionBookingFilterInput = {
@@ -587,11 +606,61 @@ export type ModelSubscriptionBookingFilterInput = {
   updatedAt?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionBookingFilterInput | null > | null,
   or?: Array< ModelSubscriptionBookingFilterInput | null > | null,
+  owner?: ModelStringInput | null,
 };
 
 export type ModelSubscriptionBooleanInput = {
   ne?: boolean | null,
   eq?: boolean | null,
+};
+
+export type UpdateFavoriteMutationVariables = {
+  input: UpdateFavoriteInput,
+  condition?: ModelFavoriteConditionInput | null,
+};
+
+export type UpdateFavoriteMutation = {
+  updateFavorite?:  {
+    __typename: "Favorite",
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+    profile:  {
+      __typename: "Profile",
+      id: string,
+      firstName: string,
+      lastName: string,
+      username: string,
+      email: string,
+      profileImage?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    },
+    property:  {
+      __typename: "Property",
+      id: string,
+      name: string,
+      tagline: string,
+      category: string,
+      image: string,
+      country: string,
+      description: string,
+      price: number,
+      guests: number,
+      bedrooms: number,
+      beds: number,
+      baths: number,
+      amenities: string,
+      createdAt: string,
+      updatedAt: string,
+      profilePropertiesId?: string | null,
+      owner?: string | null,
+    },
+    profileFavoritesId?: string | null,
+    propertyFavoritesId?: string | null,
+    owner?: string | null,
+  } | null,
 };
 
 export type CreateProfileMutationVariables = {
@@ -626,6 +695,7 @@ export type CreateProfileMutation = {
       __typename: "ModelBookingConnection",
       nextToken?: string | null,
     } | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -661,6 +731,7 @@ export type UpdateProfileMutation = {
       __typename: "ModelBookingConnection",
       nextToken?: string | null,
     } | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -696,6 +767,7 @@ export type DeleteProfileMutation = {
       __typename: "ModelBookingConnection",
       nextToken?: string | null,
     } | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -732,6 +804,7 @@ export type CreatePropertyMutation = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     favorites?:  {
       __typename: "ModelFavoriteConnection",
@@ -746,6 +819,7 @@ export type CreatePropertyMutation = {
       nextToken?: string | null,
     } | null,
     profilePropertiesId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -782,6 +856,7 @@ export type UpdatePropertyMutation = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     favorites?:  {
       __typename: "ModelFavoriteConnection",
@@ -796,6 +871,7 @@ export type UpdatePropertyMutation = {
       nextToken?: string | null,
     } | null,
     profilePropertiesId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -832,6 +908,7 @@ export type DeletePropertyMutation = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     favorites?:  {
       __typename: "ModelFavoriteConnection",
@@ -846,6 +923,7 @@ export type DeletePropertyMutation = {
       nextToken?: string | null,
     } | null,
     profilePropertiesId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -870,6 +948,7 @@ export type CreateFavoriteMutation = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -889,55 +968,11 @@ export type CreateFavoriteMutation = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     profileFavoritesId?: string | null,
     propertyFavoritesId?: string | null,
-  } | null,
-};
-
-export type UpdateFavoriteMutationVariables = {
-  input: UpdateFavoriteInput,
-  condition?: ModelFavoriteConditionInput | null,
-};
-
-export type UpdateFavoriteMutation = {
-  updateFavorite?:  {
-    __typename: "Favorite",
-    id: string,
-    createdAt: string,
-    updatedAt: string,
-    profile:  {
-      __typename: "Profile",
-      id: string,
-      firstName: string,
-      lastName: string,
-      username: string,
-      email: string,
-      profileImage?: string | null,
-      createdAt: string,
-      updatedAt: string,
-    },
-    property:  {
-      __typename: "Property",
-      id: string,
-      name: string,
-      tagline: string,
-      category: string,
-      image: string,
-      country: string,
-      description: string,
-      price: number,
-      guests: number,
-      bedrooms: number,
-      beds: number,
-      baths: number,
-      amenities: string,
-      createdAt: string,
-      updatedAt: string,
-      profilePropertiesId?: string | null,
-    },
-    profileFavoritesId?: string | null,
-    propertyFavoritesId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -962,6 +997,7 @@ export type DeleteFavoriteMutation = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -981,9 +1017,11 @@ export type DeleteFavoriteMutation = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     profileFavoritesId?: string | null,
     propertyFavoritesId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -1006,6 +1044,7 @@ export type CreateReviewMutation = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -1025,6 +1064,7 @@ export type CreateReviewMutation = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     rating: number,
     comment: string,
@@ -1032,6 +1072,7 @@ export type CreateReviewMutation = {
     updatedAt: string,
     profileReviewsId?: string | null,
     propertyReviewsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -1054,6 +1095,7 @@ export type UpdateReviewMutation = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -1073,6 +1115,7 @@ export type UpdateReviewMutation = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     rating: number,
     comment: string,
@@ -1080,6 +1123,7 @@ export type UpdateReviewMutation = {
     updatedAt: string,
     profileReviewsId?: string | null,
     propertyReviewsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -1102,6 +1146,7 @@ export type DeleteReviewMutation = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -1121,6 +1166,7 @@ export type DeleteReviewMutation = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     rating: number,
     comment: string,
@@ -1128,6 +1174,7 @@ export type DeleteReviewMutation = {
     updatedAt: string,
     profileReviewsId?: string | null,
     propertyReviewsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -1150,6 +1197,7 @@ export type CreateBookingMutation = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -1169,6 +1217,7 @@ export type CreateBookingMutation = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     orderTotal: number,
     totalNights: number,
@@ -1179,6 +1228,7 @@ export type CreateBookingMutation = {
     updatedAt: string,
     profileBookingsId?: string | null,
     propertyBookingsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -1201,6 +1251,7 @@ export type UpdateBookingMutation = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -1220,6 +1271,7 @@ export type UpdateBookingMutation = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     orderTotal: number,
     totalNights: number,
@@ -1230,6 +1282,7 @@ export type UpdateBookingMutation = {
     updatedAt: string,
     profileBookingsId?: string | null,
     propertyBookingsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -1252,6 +1305,7 @@ export type DeleteBookingMutation = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -1271,6 +1325,7 @@ export type DeleteBookingMutation = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     orderTotal: number,
     totalNights: number,
@@ -1281,6 +1336,7 @@ export type DeleteBookingMutation = {
     updatedAt: string,
     profileBookingsId?: string | null,
     propertyBookingsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -1315,6 +1371,7 @@ export type GetProfileQuery = {
       __typename: "ModelBookingConnection",
       nextToken?: string | null,
     } | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -1337,6 +1394,7 @@ export type ListProfilesQuery = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1374,6 +1432,7 @@ export type GetPropertyQuery = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     favorites?:  {
       __typename: "ModelFavoriteConnection",
@@ -1388,6 +1447,7 @@ export type GetPropertyQuery = {
       nextToken?: string | null,
     } | null,
     profilePropertiesId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -1418,6 +1478,7 @@ export type ListPropertiesQuery = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1443,6 +1504,7 @@ export type GetFavoriteQuery = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -1462,9 +1524,11 @@ export type GetFavoriteQuery = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     profileFavoritesId?: string | null,
     propertyFavoritesId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -1484,6 +1548,7 @@ export type ListFavoritesQuery = {
       updatedAt: string,
       profileFavoritesId?: string | null,
       propertyFavoritesId?: string | null,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1507,6 +1572,7 @@ export type GetReviewQuery = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -1526,6 +1592,7 @@ export type GetReviewQuery = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     rating: number,
     comment: string,
@@ -1533,6 +1600,7 @@ export type GetReviewQuery = {
     updatedAt: string,
     profileReviewsId?: string | null,
     propertyReviewsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -1554,6 +1622,7 @@ export type ListReviewsQuery = {
       updatedAt: string,
       profileReviewsId?: string | null,
       propertyReviewsId?: string | null,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1577,6 +1646,7 @@ export type GetBookingQuery = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -1596,6 +1666,7 @@ export type GetBookingQuery = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     orderTotal: number,
     totalNights: number,
@@ -1606,6 +1677,7 @@ export type GetBookingQuery = {
     updatedAt: string,
     profileBookingsId?: string | null,
     propertyBookingsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -1630,6 +1702,7 @@ export type ListBookingsQuery = {
       updatedAt: string,
       profileBookingsId?: string | null,
       propertyBookingsId?: string | null,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1637,6 +1710,7 @@ export type ListBookingsQuery = {
 
 export type OnCreateProfileSubscriptionVariables = {
   filter?: ModelSubscriptionProfileFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateProfileSubscription = {
@@ -1666,11 +1740,13 @@ export type OnCreateProfileSubscription = {
       __typename: "ModelBookingConnection",
       nextToken?: string | null,
     } | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateProfileSubscriptionVariables = {
   filter?: ModelSubscriptionProfileFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateProfileSubscription = {
@@ -1700,11 +1776,13 @@ export type OnUpdateProfileSubscription = {
       __typename: "ModelBookingConnection",
       nextToken?: string | null,
     } | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteProfileSubscriptionVariables = {
   filter?: ModelSubscriptionProfileFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteProfileSubscription = {
@@ -1734,11 +1812,13 @@ export type OnDeleteProfileSubscription = {
       __typename: "ModelBookingConnection",
       nextToken?: string | null,
     } | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnCreatePropertySubscriptionVariables = {
   filter?: ModelSubscriptionPropertyFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreatePropertySubscription = {
@@ -1769,6 +1849,7 @@ export type OnCreatePropertySubscription = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     favorites?:  {
       __typename: "ModelFavoriteConnection",
@@ -1783,11 +1864,13 @@ export type OnCreatePropertySubscription = {
       nextToken?: string | null,
     } | null,
     profilePropertiesId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdatePropertySubscriptionVariables = {
   filter?: ModelSubscriptionPropertyFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdatePropertySubscription = {
@@ -1818,6 +1901,7 @@ export type OnUpdatePropertySubscription = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     favorites?:  {
       __typename: "ModelFavoriteConnection",
@@ -1832,11 +1916,13 @@ export type OnUpdatePropertySubscription = {
       nextToken?: string | null,
     } | null,
     profilePropertiesId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeletePropertySubscriptionVariables = {
   filter?: ModelSubscriptionPropertyFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeletePropertySubscription = {
@@ -1867,6 +1953,7 @@ export type OnDeletePropertySubscription = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     favorites?:  {
       __typename: "ModelFavoriteConnection",
@@ -1881,11 +1968,13 @@ export type OnDeletePropertySubscription = {
       nextToken?: string | null,
     } | null,
     profilePropertiesId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnCreateFavoriteSubscriptionVariables = {
   filter?: ModelSubscriptionFavoriteFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateFavoriteSubscription = {
@@ -1904,6 +1993,7 @@ export type OnCreateFavoriteSubscription = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -1923,14 +2013,17 @@ export type OnCreateFavoriteSubscription = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     profileFavoritesId?: string | null,
     propertyFavoritesId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateFavoriteSubscriptionVariables = {
   filter?: ModelSubscriptionFavoriteFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateFavoriteSubscription = {
@@ -1949,6 +2042,7 @@ export type OnUpdateFavoriteSubscription = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -1968,14 +2062,17 @@ export type OnUpdateFavoriteSubscription = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     profileFavoritesId?: string | null,
     propertyFavoritesId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteFavoriteSubscriptionVariables = {
   filter?: ModelSubscriptionFavoriteFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteFavoriteSubscription = {
@@ -1994,6 +2091,7 @@ export type OnDeleteFavoriteSubscription = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -2013,14 +2111,17 @@ export type OnDeleteFavoriteSubscription = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     profileFavoritesId?: string | null,
     propertyFavoritesId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnCreateReviewSubscriptionVariables = {
   filter?: ModelSubscriptionReviewFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateReviewSubscription = {
@@ -2037,6 +2138,7 @@ export type OnCreateReviewSubscription = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -2056,6 +2158,7 @@ export type OnCreateReviewSubscription = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     rating: number,
     comment: string,
@@ -2063,11 +2166,13 @@ export type OnCreateReviewSubscription = {
     updatedAt: string,
     profileReviewsId?: string | null,
     propertyReviewsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateReviewSubscriptionVariables = {
   filter?: ModelSubscriptionReviewFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateReviewSubscription = {
@@ -2084,6 +2189,7 @@ export type OnUpdateReviewSubscription = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -2103,6 +2209,7 @@ export type OnUpdateReviewSubscription = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     rating: number,
     comment: string,
@@ -2110,11 +2217,13 @@ export type OnUpdateReviewSubscription = {
     updatedAt: string,
     profileReviewsId?: string | null,
     propertyReviewsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteReviewSubscriptionVariables = {
   filter?: ModelSubscriptionReviewFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteReviewSubscription = {
@@ -2131,6 +2240,7 @@ export type OnDeleteReviewSubscription = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -2150,6 +2260,7 @@ export type OnDeleteReviewSubscription = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     rating: number,
     comment: string,
@@ -2157,11 +2268,13 @@ export type OnDeleteReviewSubscription = {
     updatedAt: string,
     profileReviewsId?: string | null,
     propertyReviewsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnCreateBookingSubscriptionVariables = {
   filter?: ModelSubscriptionBookingFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateBookingSubscription = {
@@ -2178,6 +2291,7 @@ export type OnCreateBookingSubscription = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -2197,6 +2311,7 @@ export type OnCreateBookingSubscription = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     orderTotal: number,
     totalNights: number,
@@ -2207,11 +2322,13 @@ export type OnCreateBookingSubscription = {
     updatedAt: string,
     profileBookingsId?: string | null,
     propertyBookingsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateBookingSubscriptionVariables = {
   filter?: ModelSubscriptionBookingFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateBookingSubscription = {
@@ -2228,6 +2345,7 @@ export type OnUpdateBookingSubscription = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -2247,6 +2365,7 @@ export type OnUpdateBookingSubscription = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     orderTotal: number,
     totalNights: number,
@@ -2257,11 +2376,13 @@ export type OnUpdateBookingSubscription = {
     updatedAt: string,
     profileBookingsId?: string | null,
     propertyBookingsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteBookingSubscriptionVariables = {
   filter?: ModelSubscriptionBookingFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteBookingSubscription = {
@@ -2278,6 +2399,7 @@ export type OnDeleteBookingSubscription = {
       profileImage?: string | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     },
     property:  {
       __typename: "Property",
@@ -2297,6 +2419,7 @@ export type OnDeleteBookingSubscription = {
       createdAt: string,
       updatedAt: string,
       profilePropertiesId?: string | null,
+      owner?: string | null,
     },
     orderTotal: number,
     totalNights: number,
@@ -2307,5 +2430,6 @@ export type OnDeleteBookingSubscription = {
     updatedAt: string,
     profileBookingsId?: string | null,
     propertyBookingsId?: string | null,
+    owner?: string | null,
   } | null,
 };
