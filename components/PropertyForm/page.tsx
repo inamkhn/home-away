@@ -25,7 +25,7 @@ import Loading from "../Loading";
 import { getCurrentUser } from "aws-amplify/auth";
 import { validationSchema } from "@/schema/propertySchema";
 import { uploadData } from "aws-amplify/storage";
-import { GRAPHQL_AUTH_MODE } from "@aws-amplify/auth"
+import { GRAPHQL_AUTH_MODE } from "aws-amplify/api";
 
 interface amentie {
   id: number;
@@ -241,12 +241,11 @@ export default function PropertyForm() {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      // First upload the image
       const result = await uploadData({
-        path: `properties/${Date.now()}-${values.image.name}`, // Better path naming
+        path: `properties/${Date.now()}-${values.image.name}`,
         data: values.image,
         options: {
-          contentType: values.image.type, // Add content type
+          contentType: values.image.type,
           onProgress: ({ transferredBytes, totalBytes }) => {
             if (totalBytes) {
               console.log(
@@ -258,8 +257,6 @@ export default function PropertyForm() {
           },
         },
       }).result;
-  
-      // Prepare the property data
       const formData = {
         name: values.name,
         tagline: values.tagline,
@@ -275,20 +272,16 @@ export default function PropertyForm() {
         amenities: JSON.stringify(selectedAmenities),
         profilePropertiesId: userId,
       };
-  
-      // Make sure user is authenticated before proceeding
       try {
         const currentSession = await getCurrentUser();
         if (!currentSession) {
-          throw new Error('No authenticated user');
+          throw new Error("No authenticated user");
         }
       } catch (error) {
-        console.error('Authentication check failed:', error);
-        toast.error('Please sign in to create a property');
+        console.error("Authentication check failed:", error);
+        toast.error("Please sign in to create a property");
         return;
       }
-  
-      // Create the property with explicit auth mode
       const newProperty = await client.graphql({
         query: createProperty,
         variables: {
@@ -296,17 +289,16 @@ export default function PropertyForm() {
         },
         authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
       });
-  
+
       console.log("Property created:", newProperty);
       toast.success("Property created successfully");
-  
     } catch (error) {
       console.error("Error creating property:", error);
-      
+
       // More specific error handling
-      if (error.message?.includes('not authenticated')) {
+      if (error.message?.includes("not authenticated")) {
         toast.error("Please sign in to create a property");
-      } else if (error.message?.includes('expired')) {
+      } else if (error.message?.includes("expired")) {
         toast.error("Your session has expired. Please sign in again");
       } else {
         toast.error(error.message || "Failed to create property");
