@@ -25,7 +25,7 @@ import Loading from "../Loading";
 import { getCurrentUser } from "aws-amplify/auth";
 import { validationSchema } from "@/schema/propertySchema";
 import { uploadData } from "aws-amplify/storage";
-import { GRAPHQL_AUTH_MODE } from "aws-amplify/api";
+import { GRAPHQL_AUTH_MODE } from "@aws-amplify/api";
 
 interface amentie {
   id: number;
@@ -272,15 +272,10 @@ export default function PropertyForm() {
         amenities: JSON.stringify(selectedAmenities),
         profilePropertiesId: userId,
       };
-      try {
-        const currentSession = await getCurrentUser();
-        if (!currentSession) {
-          throw new Error("No authenticated user");
-        }
-      } catch (error) {
-        console.error("Authentication check failed:", error);
-        toast.error("Please sign in to create a property");
-        return;
+
+      const currentSession = await getCurrentUser();
+      if (!currentSession) {
+        throw new Error("No authenticated user");
       }
       const newProperty = await client.graphql({
         query: createProperty,
